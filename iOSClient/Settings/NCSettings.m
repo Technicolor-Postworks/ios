@@ -66,9 +66,9 @@
     row.action.viewControllerClass = [CCManageAutoUpload class];
     [section addFormRow:row];
 
-    // Section : PRIVACY --------------------------------------------------------------
+    // Section : LOCK --------------------------------------------------------------
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_privacy_", nil)];
+    section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"_lock_", nil)];
     [form addFormSection:section];
     
     // Lock active YES/NO
@@ -89,12 +89,6 @@
     [section addFormRow:row];
     // Lock no screen
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"notPasscodeAtStart" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_lock_protection_no_screen_", nil)];
-    row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
-    [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
-    [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
-    [section addFormRow:row];
-    // Privacy screen
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"privacyScreen" rowType:XLFormRowDescriptorTypeBooleanSwitch title:NSLocalizedString(@"_privacy_screen_", nil)];
     row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
     [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
     [row.cellConfig setObject:NCBrandColor.shared.label forKey:@"textLabel.textColor"];
@@ -150,8 +144,8 @@
     
     if (!NCBrandOptions.shared.disable_crash_service) {
         
-        // Privacy and Legal Policy
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"privacy" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_privacy_legal_", nil)];
+        // Privacy
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"privacy" rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"_privacy_", nil)];
         row.cellConfigAtConfigure[@"backgroundColor"] = NCBrandColor.shared.secondarySystemGroupedBackground;
         [row.cellConfig setObject:[UIFont systemFontOfSize:15.0] forKey:@"textLabel.font"];
         [row.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
@@ -230,7 +224,6 @@
     XLFormRowDescriptor *rowBloccoPasscode = [self.form formRowWithTag:@"bloccopasscode"];
     XLFormRowDescriptor *rowNotPasscodeAtStart = [self.form formRowWithTag:@"notPasscodeAtStart"];
     XLFormRowDescriptor *rowEnableTouchDaceID = [self.form formRowWithTag:@"enableTouchDaceID"];
-    XLFormRowDescriptor *rowPrivacyScreen = [self.form formRowWithTag:@"privacyScreen"];
 
     // ------------------------------------------------------------------
     
@@ -244,8 +237,6 @@
     
     if ([CCUtility getEnableTouchFaceID]) [rowEnableTouchDaceID setValue:@1]; else [rowEnableTouchDaceID setValue:@0];
     if ([CCUtility getNotPasscodeAtStart]) [rowNotPasscodeAtStart setValue:@1]; else [rowNotPasscodeAtStart setValue:@0];
-    if ([CCUtility getPrivacyScreenEnabled]) [rowPrivacyScreen setValue:@1]; else [rowPrivacyScreen setValue:@0];
-
 
     // -----------------------------------------------------------------
     
@@ -273,15 +264,6 @@
             [CCUtility setEnableTouchFaceID:true];
         } else {
             [CCUtility setEnableTouchFaceID:false];
-        }
-    }
-    
-    if ([rowDescriptor.tag isEqualToString:@"privacyScreen"]) {
-        
-        if ([[rowDescriptor.value valueData] boolValue] == YES) {
-            [CCUtility setPrivacyScreenEnabled:true];
-        } else {
-            [CCUtility setPrivacyScreenEnabled:false];
         }
     }
 }

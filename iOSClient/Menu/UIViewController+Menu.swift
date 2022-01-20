@@ -63,7 +63,7 @@ extension UIViewController {
         let serverVersionMajor = NCManageDatabase.shared.getCapabilitiesServerInt(account: appDelegate.account, elements: NCElementsJSON.shared.capabilitiesVersionMajor)
         guard serverVersionMajor >= NCGlobal.shared.nextcloudVersion23 else { return }
 
-        NCCommunication.shared.getHovercard(for: userId) { card, _, _ in
+        NCCommunication.shared.getHovercard(for: userId) { (card, errCode, err) in
             guard let card = card else { return }
 
             let personHeader = NCMenuAction(
@@ -104,12 +104,9 @@ extension UIViewController {
 
         present(mail, animated: true)
     }
-
+    
     func presentMenu(with actions: [NCMenuAction]) {
-        guard let menuViewController = NCMenu.makeNCMenu(with: actions) else {
-            NCContentPresenter.shared.showGenericError(description: "_internal_generic_error_")
-            return
-        }
+        let menuViewController = NCMenu.makeNCMenu(with: actions)
 
         let menuPanelController = NCMenuPanelController()
         menuPanelController.parentPresenter = self

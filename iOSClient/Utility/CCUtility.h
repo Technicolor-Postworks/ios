@@ -51,8 +51,6 @@
 + (BOOL)getEnableTouchFaceID;
 + (void)setEnableTouchFaceID:(BOOL)set;
 
-+ (BOOL)isPasscodeAtStartEnabled;
-
 + (NSString *)getGroupBySettings;
 + (void)setGroupBySettings:(NSString *)groupby;
 
@@ -182,9 +180,6 @@
 
 + (PDFDisplayDirection)getPDFDisplayDirection;
 + (void)setPDFDisplayDirection:(PDFDisplayDirection)direction;
-
-+ (BOOL)getPrivacyScreenEnabled;
-+ (void)setPrivacyScreenEnabled:(BOOL)set;
 
 // ===== Varius =====
 

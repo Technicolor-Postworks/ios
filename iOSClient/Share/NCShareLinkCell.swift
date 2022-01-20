@@ -20,38 +20,40 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 import UIKit
 
-class NCShareLinkCell: UITableViewCell {
 
+class NCShareLinkCell: UITableViewCell {
+    
     @IBOutlet weak var imageItem: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var buttonCopy: UIButton!
     @IBOutlet weak var buttonMenu: UIButton!
-
+    
     private let iconShare: CGFloat = 200
-
+    
     var tableShare: tableShare?
-    weak var delegate: NCShareLinkCellDelegate?
-
+    var delegate: NCShareLinkCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         imageItem.image = NCShareCommon.shared.createLinkAvatar(imageName: "sharebylink", colorCircle: NCBrandColor.shared.brandElement)
-        buttonCopy.setImage(UIImage(named: "shareCopy")!.image(color: .gray, size: 50), for: .normal)
-        buttonMenu.setImage(UIImage(named: "shareMenu")!.image(color: .gray, size: 50), for: .normal)
+        buttonCopy.setImage(UIImage.init(named: "shareCopy")!.image(color: .gray, size: 50), for: .normal)
+        buttonMenu.setImage(UIImage.init(named: "shareMenu")!.image(color: .gray, size: 50), for: .normal)
     }
-
+    
     @IBAction func touchUpInsideCopy(_ sender: Any) {
         delegate?.tapCopy(with: tableShare, sender: sender)
     }
-
+    
     @IBAction func touchUpInsideMenu(_ sender: Any) {
         delegate?.tapMenu(with: tableShare, sender: sender)
     }
 }
 
-protocol NCShareLinkCellDelegate: AnyObject {
+protocol NCShareLinkCellDelegate {
     func tapCopy(with tableShare: tableShare?, sender: Any)
     func tapMenu(with tableShare: tableShare?, sender: Any)
 }
