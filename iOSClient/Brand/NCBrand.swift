@@ -45,9 +45,9 @@ import UIKit
         return instance
     }()
     
-    @objc public var brand:                             String = "Nextcloud"
+    @objc public var brand:                             String = "PostCloud"
     //@objc public var mailMe:                            String = "ios@nextcloud.com"                              // Deprecated
-    @objc public var textCopyrightNextcloudiOS:         String = "Nextcloud Liquid for iOS %@ © 2021"
+    @objc public var textCopyrightNextcloudiOS:         String = "PostCloud for iOS %@ © 2021"
     @objc public var textCopyrightNextcloudServer:      String = "Nextcloud Server %@"
     @objc public var loginBaseUrl:                      String = "https://cloud.nextcloud.com"
     @objc public var pushNotificationServerProxy:       String = "https://push-notifications.nextcloud.com"
@@ -85,7 +85,7 @@ import UIKit
     @objc public var disable_multiaccount:              Bool = false
     @objc public var disable_manage_account:            Bool = false
     @objc public var disable_more_external_site:        Bool = false
-    @objc public var disable_openin_file:               Bool = false                                                // Don't touch me !!
+    @objc public var disable_openin_file:               Bool = true                                                // Don't touch me !!
     @objc public var disable_crash_service:             Bool = false
     @objc public var disable_request_account:           Bool = false
     @objc public var disable_log:                       Bool = false
